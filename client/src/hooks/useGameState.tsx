@@ -49,11 +49,17 @@ const useGameState = () => {
     setPlayerTurn(playerTurn === PLAYER_X ? PLAYER_Y : PLAYER_X);
   };
 
+  const handleReset = () => {
+    setBoard(newBoard(3));
+    setGameState(GameState.inProgress);
+  };
+
   return {
     playerTurn,
     gameState,
     board,
     handleClick,
+    handleReset,
   };
 };
 
