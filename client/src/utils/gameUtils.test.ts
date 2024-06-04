@@ -1,4 +1,5 @@
-import { calculateWinningCombinations } from "./gameUtils";
+import { XorO } from "../types";
+import { calculateWinningCombinations, checkWinner } from "./gameUtils";
 
 describe("calculateWinningCombinations", () => {
   test("should correctly calculate winning combinations for a 4x4 grid", () => {
@@ -66,5 +67,53 @@ describe("calculateWinningCombinations", () => {
     ];
     let winningCombinations = calculateWinningCombinations(4, 4);
     expect(winningCombinations).toEqual(expectedCombinations);
+  });
+});
+
+describe("checkWinnerRow", () => {
+  test("should return X as winner for a row X victory", () => {
+    const board: (XorO | undefined)[][] = [
+      ["X", "X", "X", "X"],
+      [undefined, undefined, undefined, undefined],
+      [undefined, undefined, undefined, undefined],
+      [undefined, undefined, undefined, undefined],
+    ];
+    expect(checkWinner(board)).toBe("X");
+  });
+});
+
+describe("checkWinnerColumn", () => {
+  test("should return O as winner for a column O victory", () => {
+    const board: (XorO | undefined)[][] = [
+      ["O", "X", "O", "X"],
+      ["X", "O", "O", "X"],
+      ["X", "O", "O", "X"],
+      [undefined, "X", "O", undefined],
+    ];
+    expect(checkWinner(board)).toBe("O");
+  });
+});
+
+describe("checkWinnerDiagonal", () => {
+  test("should return O as winner for a diagonal O victory", () => {
+    const board: (XorO | undefined)[][] = [
+      ["O", "X", "O", "X"],
+      ["X", "O", "O", "X"],
+      ["X", "O", "O", undefined],
+      [undefined, "X", "X", "O"],
+    ];
+    expect(checkWinner(board)).toBe("O");
+  });
+});
+
+describe("checkDraw", () => {
+  test("should return undefined when board is full and game is a draw", () => {
+    const board: (XorO | undefined)[][] = [
+      ["O", "X", "O", "X"],
+      ["X", "O", "O", "X"],
+      ["X", "O", "X", "O"],
+      ["X", "X", "X", "O"],
+    ];
+    expect(checkWinner(board)).toBe(undefined);
   });
 });
