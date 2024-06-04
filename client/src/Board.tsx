@@ -18,7 +18,7 @@ const Board = ({ board, playerTurn, gameState, handleClick }: BoardProps) => {
             <div
               onClick={() => handleClick(rowIndex, colIndex)}
               key={colIndex}
-              className={`border-2 border-gray-900 w-10 h-10 items-center justify-center text-2xl font-bold flex ${
+              className={`border-2 border-pink-600 w-10 h-10 items-center justify-center text-2xl font-bold flex ${
                 !column &&
                 gameState === GameState.inProgress &&
                 playerTurn.toLocaleLowerCase() + "-hover cursor-pointer"

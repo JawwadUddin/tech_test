@@ -15,8 +15,11 @@ export const Main = () => {
     handleReset,
   } = useGameState();
   return (
-    <div className="flex flex-col mt-10 items-center gap-10">
+    <div className="flex flex-col pt-10 items-center gap-10 bg-sky-950 text-white min-h-screen">
       <div className="font-bold text-2xl">Tic Tac Toe</div>
+      {boardLength > 3 && (
+        <p className="opacity-40 italic">You need to obtain 4 in a row</p>
+      )}
       <Board
         board={board}
         playerTurn={playerTurn}
