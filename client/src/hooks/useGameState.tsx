@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Board, XorO } from "../types";
-import { checkWinner } from "../utils/gameUtils";
+import { calculateWinningCombinations, checkWinner } from "../utils/gameUtils";
 
 const PLAYER_X: XorO = "X";
 const PLAYER_Y: XorO = "O";
@@ -17,9 +17,15 @@ function newBoard(length: number) {
 }
 
 const useGameState = () => {
-  const [board, setBoard] = useState<Board>(newBoard(3));
+  const [boardLength, setBoardLength] = useState<number>(4);
+  const [board, setBoard] = useState<Board>(newBoard(boardLength));
   const [playerTurn, setPlayerTurn] = useState<XorO>(PLAYER_X);
   const [gameState, setGameState] = useState<number>(GameState.inProgress);
+
+  useEffect(() => {
+    calculateWinningCombinations(boardLength);
+    setBoard(newBoard(boardLength));
+  }, [boardLength]);
 
   const handleClick = (rowIndex: number, colIndex: number) => {
     // do not update tile if value within tile already exists (previously selected)
@@ -50,7 +56,7 @@ const useGameState = () => {
   };
 
   const handleReset = () => {
-    setBoard(newBoard(3));
+    setBoard(newBoard(boardLength));
     setGameState(GameState.inProgress);
   };
 
