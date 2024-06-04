@@ -13,6 +13,9 @@ const Board = () => {
   const [playerTurn, setPlayerTurn] = useState<XorO>(PLAYER_X);
 
   const handleClick = (rowIndex: number, colIndex: number) => {
+    // do not update tile if value within tile already exists (previously selected)
+    if (board[rowIndex][colIndex]) return;
+
     const updatedBoard = board.map((row, rowI) => {
       if (rowI !== rowIndex) return row;
       return row.map((column, colI) => {
