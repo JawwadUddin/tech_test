@@ -24,7 +24,7 @@ const useGameState = () => {
 
   useEffect(() => {
     calculateWinningCombinations(boardLength);
-    setBoard(newBoard(boardLength));
+    handleReset();
   }, [boardLength]);
 
   const handleClick = (rowIndex: number, colIndex: number) => {
