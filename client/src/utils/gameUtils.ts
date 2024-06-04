@@ -46,6 +46,13 @@ let winningCombinations = [
   ],
 ];
 
+export function calculateWinningCombinations(
+  gridSize: number,
+  winLength: number
+) {
+  return;
+}
+
 export const checkWinner = (board: (XorO | undefined)[][]) => {
   for (const combination of winningCombinations) {
     const [a, b, c] = combination;
