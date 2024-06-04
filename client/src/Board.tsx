@@ -22,6 +22,12 @@ const Board = ({ board, playerTurn, gameState, handleClick }: BoardProps) => {
                 !column &&
                 gameState === GameState.inProgress &&
                 playerTurn.toLocaleLowerCase() + "-hover cursor-pointer"
+              } ${
+                column === "X"
+                  ? "bg-green-600"
+                  : column === "O"
+                  ? "bg-red-500"
+                  : null
               }`}
             >
               {column}
