@@ -21,6 +21,9 @@ const Board = () => {
       });
     });
     setBoard(updatedBoard);
+
+    // alternate player turn
+    setPlayerTurn(playerTurn === PLAYER_X ? PLAYER_Y : PLAYER_X);
   };
 
   return (
