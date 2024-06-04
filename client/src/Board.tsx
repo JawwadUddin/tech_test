@@ -1,9 +1,15 @@
 import React from "react";
-import useGameState, { GameState } from "./hooks/useGameState";
+import { GameState } from "./hooks/useGameState";
+import { Board, XorO } from "./types";
 
-const Board = () => {
-  const { playerTurn, board, handleClick, gameState } = useGameState();
+interface BoardProps {
+  board: Board;
+  playerTurn: XorO;
+  gameState: number;
+  handleClick: (rowIndex: number, colIndex: number) => void;
+}
 
+const Board = ({ board, playerTurn, gameState, handleClick }: BoardProps) => {
   return (
     <div className="flex flex-col gap-1">
       {board.map((row, rowIndex) => (
