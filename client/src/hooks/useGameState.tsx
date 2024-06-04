@@ -24,7 +24,7 @@ function newBoard(length: number) {
 }
 
 const useGameState = () => {
-  const [boardLength, setBoardLength] = useState<number>(4);
+  const [boardLength, setBoardLength] = useState<number>(3);
   const [board, setBoard] = useState<Board>(newBoard(boardLength));
   const [playerTurn, setPlayerTurn] = useState<XorO>(PLAYER_X);
   const [gameState, setGameState] = useState<number>(GameState.inProgress);
