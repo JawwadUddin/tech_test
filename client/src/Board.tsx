@@ -31,6 +31,11 @@ const Board = () => {
     });
     setBoard(updatedBoard);
 
+    // set game state to draw if all tiles are full
+    if (updatedBoard.flat().every((cell) => cell !== undefined)) {
+      setGameState(GameState.draw);
+    }
+
     // alternate player turn
     setPlayerTurn(playerTurn === PLAYER_X ? PLAYER_Y : PLAYER_X);
   };
