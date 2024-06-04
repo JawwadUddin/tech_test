@@ -64,6 +64,8 @@ const useGameState = () => {
     playerTurn,
     gameState,
     board,
+    boardLength,
+    setBoardLength,
     handleClick,
     handleReset,
   };
