@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { XorO } from "../types";
+import { Board, XorO } from "../types";
 import { checkWinner } from "../utils/gameUtils";
 
 const PLAYER_X: XorO = "X";
@@ -13,7 +13,7 @@ export const GameState = {
 };
 
 const useGameState = () => {
-  const [board, setBoard] = useState<(XorO | undefined)[][]>(
+  const [board, setBoard] = useState<Board>(
     Array.from({ length: 3 }, () => Array(3).fill(undefined))
   );
   const [playerTurn, setPlayerTurn] = useState<XorO>(PLAYER_X);
