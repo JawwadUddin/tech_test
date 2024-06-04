@@ -6,7 +6,7 @@ const PLAYER_Y: XorO = "O";
 
 const GameState = {
   playerXWins: 0,
-  playerYWins: 1,
+  playerOWins: 1,
   draw: 2,
   inProgress: 3,
 };
@@ -31,8 +31,14 @@ const Board = () => {
     });
     setBoard(updatedBoard);
 
-    // set game state to draw if all tiles are full
-    if (updatedBoard.flat().every((cell) => cell !== undefined)) {
+    // see if there is a winner
+    const winner = checkWinner(updatedBoard);
+    if (winner) {
+      setGameState(
+        winner === PLAYER_X ? GameState.playerXWins : GameState.playerOWins
+      );
+    } else if (updatedBoard.flat().every((cell) => cell !== undefined)) {
+      // set game state to draw if all tiles are full
       setGameState(GameState.draw);
     }
 
@@ -85,6 +91,17 @@ const Board = () => {
       [2, 0],
     ],
   ];
+
+  const checkWinner = (board: (XorO | undefined)[][]) => {
+    for (const combination of winningCombinations) {
+      const [a, b, c] = combination;
+      const valueA = board[a[0]][a[1]];
+      const valueB = board[b[0]][b[1]];
+      const valueC = board[c[0]][c[1]];
+      if (valueA && valueA === valueB && valueA === valueC) return valueA;
+    }
+    return undefined;
+  };
 
   return (
     <div className="flex flex-col gap-1">
