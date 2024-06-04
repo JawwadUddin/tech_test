@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Board, XorO } from "../types";
 import { calculateWinningCombinations, checkWinner } from "../utils/gameUtils";
+import gameOverSoundAsset from "../sounds/game_over.wav";
+import clickSoundAsset from "../sounds/click.wav";
+
+const gameOverSound = new Audio(gameOverSoundAsset);
+gameOverSound.volume = 0.2;
+const clickSound = new Audio(clickSoundAsset);
+clickSound.volume = 0.4;
 
 const PLAYER_X: XorO = "X";
 const PLAYER_Y: XorO = "O";
@@ -27,9 +34,15 @@ const useGameState = () => {
     handleReset();
   }, [boardLength]);
 
+  useEffect(() => {
+    if (gameState !== GameState.inProgress) gameOverSound.play();
+  }, [gameState]);
+
   const handleClick = (rowIndex: number, colIndex: number) => {
     // do not update tile if value within tile already exists (previously selected)
     if (board[rowIndex][colIndex] || gameState !== GameState.inProgress) return;
+
+    clickSound.play();
 
     const updatedBoard = board.map((row, rowI) => {
       if (rowI !== rowIndex) return row;
