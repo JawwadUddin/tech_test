@@ -1,9 +1,9 @@
-import { XorO } from "../types";
+import { Board, Combinations, XorO } from "../types";
 import { calculateWinningCombinations, checkWinner } from "./gameUtils";
 
 describe("calculateWinningCombinations", () => {
   test("should correctly calculate winning combinations for a 4x4 grid", () => {
-    const expectedCombinations: [number, number][][] = [
+    const expectedCombinations: Combinations = [
       [
         [0, 0],
         [0, 1],
@@ -72,7 +72,7 @@ describe("calculateWinningCombinations", () => {
 
 describe("checkWinnerRow", () => {
   test("should return X as winner for a row X victory", () => {
-    const board: (XorO | undefined)[][] = [
+    const board: Board = [
       ["X", "X", "X", "X"],
       [undefined, undefined, undefined, undefined],
       [undefined, undefined, undefined, undefined],
@@ -84,7 +84,7 @@ describe("checkWinnerRow", () => {
 
 describe("checkWinnerColumn", () => {
   test("should return O as winner for a column O victory", () => {
-    const board: (XorO | undefined)[][] = [
+    const board: Board = [
       ["O", "X", "O", "X"],
       ["X", "O", "O", "X"],
       ["X", "O", "O", "X"],
@@ -96,7 +96,7 @@ describe("checkWinnerColumn", () => {
 
 describe("checkWinnerDiagonal", () => {
   test("should return O as winner for a diagonal O victory", () => {
-    const board: (XorO | undefined)[][] = [
+    const board: Board = [
       ["O", "X", "O", "X"],
       ["X", "O", "O", "X"],
       ["X", "O", "O", undefined],
@@ -108,7 +108,7 @@ describe("checkWinnerDiagonal", () => {
 
 describe("checkDraw", () => {
   test("should return undefined when board is full and game is a draw", () => {
-    const board: (XorO | undefined)[][] = [
+    const board: Board = [
       ["O", "X", "O", "X"],
       ["X", "O", "O", "X"],
       ["X", "O", "X", "O"],
