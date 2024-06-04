@@ -12,10 +12,12 @@ export const GameState = {
   inProgress: 3,
 };
 
+function newBoard(length: number) {
+  return Array.from({ length }, () => Array(length).fill(undefined));
+}
+
 const useGameState = () => {
-  const [board, setBoard] = useState<Board>(
-    Array.from({ length: 3 }, () => Array(3).fill(undefined))
-  );
+  const [board, setBoard] = useState<Board>(newBoard(3));
   const [playerTurn, setPlayerTurn] = useState<XorO>(PLAYER_X);
   const [gameState, setGameState] = useState<number>(GameState.inProgress);
 
