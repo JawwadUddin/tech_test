@@ -5,11 +5,9 @@ const PLAYER_X: XorO = "X";
 const PLAYER_Y: XorO = "O";
 
 const Board = () => {
-  const [board, setBoard] = useState<(XorO | undefined)[][]>([
-    [undefined, undefined, undefined],
-    [undefined, undefined, undefined],
-    [undefined, undefined, undefined],
-  ]);
+  const [board, setBoard] = useState<(XorO | undefined)[][]>(
+    Array.from({ length: 3 }, () => Array(3).fill(undefined))
+  );
   const [playerTurn, setPlayerTurn] = useState<XorO>(PLAYER_X);
 
   const handleClick = (rowIndex: number, colIndex: number) => {
