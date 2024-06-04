@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.x-hover:hover::after {
+  content: 'X';
+  opacity: 0.5;
+}
+
+.o-hover:hover::after {
+  content: 'O';
+  opacity: 0.5;
+}
